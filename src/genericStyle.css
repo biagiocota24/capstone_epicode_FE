@@ -1,0 +1,38 @@
+:root {
+  --blu-mare: #0a6e8c;
+  --ulivo-c: #a8b888;
+  --ulivo-s: #6b7c4f;
+  --terracotta: #d97d54;
+}
+.sfondo {
+  background-color: #e8e0d0;
+}
+#main {
+  padding:;
+}
+
+.blu-mare {
+  background-color: #0a6e8c;
+}
+
+.ulivo-s {
+  color: #6b7c4f;
+}
+
+.ulivo-c {
+  color: #a8b888;
+}
+
+.calce {
+  color: #e8e0d0;
+}
+
+.link-hover:hover {
+  cursor: pointer;
+  color: var(--terracotta) !important;
+}
+
+main {
+  margin-top: var(--navbar-height, 0px);
+  /* fallback se la variabile non è settata */
+}
