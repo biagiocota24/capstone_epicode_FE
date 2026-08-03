@@ -3,5 +3,39 @@
         "home": "Home",
         "registrati": "Anmelden",
         "accedi": "Einloggen"
+    },
+    "login": {
+        "brand": "GarganoExplorer",
+        "heroTitle": "Entdecke den Gargano, eine Welle nach der anderen.",
+        "heroSubtitle": "Melde dich an, um deine Lieblingsorte zu speichern, Routen zu planen und von Einheimischen kuratierte Attraktionen zu entdecken.",
+        "stats": {
+            "attractions": "Attraktionen",
+            "municipalities": "Gemeinden",
+            "reviews": "Nutzerbewertungen"
+        },
+        "welcomeBack": "Willkommen zurück",
+        "subtitle": "Melde dich bei deinem Konto an",
+        "role": {
+            "visitor": "Tourist",
+            "business": "Unternehmen",
+            "admin": "Admin"
+        },
+        "email": "Email",
+        "emailPlaceholder": "deinname@email.com",
+        "emailRequired": "Bitte gib deine Email ein",
+        "emailInvalid": "Ungültiges Email-Format",
+        "password": "Passwort",
+        "passwordPlaceholder": "••••••••",
+        "forgotPassword": "Passwort vergessen?",
+        "passwordRequired": "Bitte gib dein Passwort ein",
+        "passwordTooShort": "Mindestens 6 Zeichen",
+        "remember": "Auf diesem Gerät merken",
+        "submit": "Anmelden als {{role}}",
+        "submitting": "Anmeldung läuft…",
+        "or": "oder",
+        "noAccount": "Noch kein Konto?",
+        "signUp": "Registrieren",
+        "toastError": "Bitte korrigiere die markierten Felder",
+        "toastSuccess": "Erfolgreich angemeldet! Willkommen bei GarganoExplorer."
     }
 }

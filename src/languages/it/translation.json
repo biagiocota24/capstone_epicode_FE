@@ -3,5 +3,39 @@
         "home": "Home",
         "registrati": "registrati",
         "accedi": "accedi"
+    },
+    "login": {
+        "brand": "GarganoExplorer",
+        "heroTitle": "Scopri il Gargano, un'onda alla volta.",
+        "heroSubtitle": "Accedi per salvare i tuoi luoghi preferiti, pianificare itinerari e scoprire attrazioni curate da chi vive il territorio.",
+        "stats": {
+            "attractions": "attrazioni",
+            "municipalities": "comuni",
+            "reviews": "recensioni utenti"
+        },
+        "welcomeBack": "Bentornato",
+        "subtitle": "Accedi al tuo account",
+        "role": {
+            "visitor": "Turista",
+            "business": "Attività",
+            "admin": "Admin"
+        },
+        "email": "Email",
+        "emailPlaceholder": "tuonome@email.com",
+        "emailRequired": "Inserisci la tua email",
+        "emailInvalid": "Formato email non valido",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "forgotPassword": "Password dimenticata?",
+        "passwordRequired": "Inserisci la password",
+        "passwordTooShort": "Almeno 6 caratteri",
+        "remember": "Ricordami su questo dispositivo",
+        "submit": "Accedi come {{role}}",
+        "submitting": "Accesso in corso…",
+        "or": "oppure",
+        "noAccount": "Non hai un account?",
+        "signUp": "Registrati",
+        "toastError": "Correggi i campi evidenziati",
+        "toastSuccess": "Accesso effettuato! Benvenuto su GarganoExplorer."
     }
 }

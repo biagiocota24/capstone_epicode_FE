@@ -3,5 +3,39 @@
         "home": "Home",
         "registrati": "Sign in",
         "accedi": "Login"
+    },
+    "login": {
+        "brand": "GarganoExplorer",
+        "heroTitle": "Discover the Gargano, one wave at a time.",
+        "heroSubtitle": "Sign in to save your favorite spots, plan itineraries and discover attractions curated by locals.",
+        "stats": {
+            "attractions": "attractions",
+            "municipalities": "municipalities",
+            "reviews": "user reviews"
+        },
+        "welcomeBack": "Welcome back",
+        "subtitle": "Sign in to your account",
+        "role": {
+            "visitor": "Tourist",
+            "business": "Business",
+            "admin": "Admin"
+        },
+        "email": "Email",
+        "emailPlaceholder": "yourname@email.com",
+        "emailRequired": "Enter your email",
+        "emailInvalid": "Invalid email format",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "forgotPassword": "Forgot password?",
+        "passwordRequired": "Enter your password",
+        "passwordTooShort": "At least 6 characters",
+        "remember": "Remember me on this device",
+        "submit": "Sign in as {{role}}",
+        "submitting": "Signing in…",
+        "or": "or",
+        "noAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "toastError": "Please fix the highlighted fields",
+        "toastSuccess": "Signed in! Welcome to GarganoExplorer."
     }
 }
