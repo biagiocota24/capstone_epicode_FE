@@ -4,6 +4,7 @@
         "registrati": "Anmelden",
         "accedi": "Einloggen"
     },
+<<<<<<< Updated upstream
     "login": {
         "brand": "GarganoExplorer",
         "heroTitle": "Entdecke den Gargano, eine Welle nach der anderen.",
@@ -39,3 +40,26 @@
         "toastSuccess": "Erfolgreich angemeldet! Willkommen bei GarganoExplorer."
     }
 }
+=======
+    "Inserisci i tuoi dati": "Geben Sie Ihre Daten ein",
+    "Inserisci il tuo nome": "Geben Sie Ihren Vornamen ein",
+    "Inserisci il tuo cognome": "Geben Sie Ihren Nachnamen ein",
+    "Inserisci la tua email": "Geben Sie Ihre E-Mail ein",
+    "Inserisci una password": "Geben Sie ein Passwort ein",
+    "Ripeti password": "Passwort wiederholen",
+    "Inserisci il numero di telefono": "Geben Sie Ihre Telefonnummer ein",
+    "Inserisci una tua breve biografia": "Geben Sie eine kurze Biografie ein",
+    "Carica la tua foto di profilo": "Laden Sie Ihr Profilfoto hoch",
+    "Registrati": "Registrieren",
+    "Registrazione in corso...": "Registrierung läuft...",
+    "Le password non corrispondono": "Passwörter stimmen nicht überein",
+    "Carica una foto di profilo": "Bitte laden Sie ein Profilfoto hoch",
+    "Errore": "Fehler",
+    "Info": "Info",
+    "Correggi gli errori nel modulo": "Bitte korrigieren Sie die Fehler im Formular",
+    "Oops! Qualcosa è andato storto": "Oops! Etwas ist schiefgelaufen",
+    "Registrazione Completata!": "Registrierung abgeschlossen!",
+    "Benvenuto! Verrai reindirizzato al login...": "Willkommen! Sie werden zur Anmeldung weitergeleitet...",
+    "Continua": "Weiter"
+}
+>>>>>>> Stashed changes
