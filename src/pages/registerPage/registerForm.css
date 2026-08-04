@@ -1,0 +1,125 @@
+:root {
+  --lp-primary: #1a7a96;
+  --lp-primary-light: #00a8d8;
+  --lp-text: #2c3e50;
+  --lp-text-muted: #6b7d87;
+  --lp-border: #e3ebee;
+  --lp-border-light: #f1f6f7;
+  --lp-placeholder: #a3b3ba;
+  --lp-error: #ff6b6b;
+  --lp-success: #27ae60;
+  --lp-bg: #f7fafb;
+}
+
+.register-form {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.blob-1 {
+  top: -120px;
+  right: -100px;
+  width: 340px;
+  height: 340px;
+  background: oklch(0.75 0.09 200 / 0.25);
+  animation: login-drift 10s ease-in-out infinite;
+}
+
+.blob-2 {
+  bottom: -160px;
+  left: -120px;
+  width: 420px;
+  height: 420px;
+  background: oklch(0.7 0.1 210 / 0.15);
+  animation: login-drift 13s ease-in-out infinite reverse;
+}
+
+.hero {
+  background: linear-gradient(
+    160deg,
+    oklch(0.42 0.1 220) 0%,
+    oklch(0.55 0.13 200) 100%
+  );
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+.compass-icon {
+  font-size: 1.4em;
+  width: 35px;
+  height: 35px;
+  background-color: #2b96b3;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.7em;
+}
+.hero-header {
+  max-width: 400px;
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(233, 231, 231);
+}
+
+.form-wrapper {
+  background-color: white;
+  width: 80%;
+  max-width: 650px;
+  border-radius: 20px;
+  padding: 1.5em;
+  box-shadow: 2px 2px 3px 1px gray;
+}
+
+.role-wrapper {
+  margin: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 2px;
+  background-color: #edfdfd;
+  border-radius: 10px;
+}
+
+.role-button {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #edfdfd;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.role-button-active {
+  background: linear-gradient(
+    135deg,
+    var(--lp-primary),
+    var(--lp-primary-light)
+  );
+  color: white;
+}
