@@ -3,6 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import SelettoreLingua from "../selettore-lingua/SelettoreLingua";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const navbarColor = "#0a6e8c";
 
@@ -22,6 +23,7 @@ const itemStyle: React.CSSProperties = {
 };
 
 const MyNavbar = function () {
+  const navigate = useNavigate()
   const navRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (navRef.current) {
@@ -58,14 +60,14 @@ const MyNavbar = function () {
             </Dropdown.Toggle>
             <Dropdown.Menu style={menuStyle}>
               <Dropdown.Item
-                href="#"
+              onClick={()=> navigate("login")}
                 style={itemStyle}
                 className="navbar-dropdown-item"
               >
                 {t("navbar.accedi")}
               </Dropdown.Item>
               <Dropdown.Item
-                href="#"
+              onClick={()=> navigate("register")}
                 style={itemStyle}
                 className="navbar-dropdown-item"
               >

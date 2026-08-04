@@ -1,9 +1,8 @@
 import WelcomePage from "./pages/welcomePage/WelcomePage";
 import "./genericStyle.css";
 import { Route, Routes } from "react-router-dom";
-import MyNavbar from "./components/componentiGenerali/MyNavbar";
-import MyFooter from "./components/componentiGenerali/MyFooter";
 import RegisterForm from "./pages/registerPage/RegisterForm";
+<<<<<<< Updated upstream
 import LoginPage from "./pages/LoginPage/LoginPage";
 
 const AppContent = function () {
@@ -23,6 +22,22 @@ const AppContent = function () {
         <MyFooter />
       </footer>
     </div>
+=======
+// import LoginForm from "./pages/LoginPage/LoginForm";
+import LoginForm2 from "./pages/LoginPage/LoginForm2";
+
+const AppContent = function () {
+  return (
+    <main>
+      <Routes>
+        // ROUTE PUBBLICHE
+        <Route path="/" element={<WelcomePage />} />
+        {/* <Route path="/login" element={<LoginForm />} /> */}
+        <Route path="/login" element={<LoginForm2 />} />
+        <Route path="/register" element={<RegisterForm />} />
+      </Routes>
+    </main>
+>>>>>>> Stashed changes
   );
 };
 

@@ -4,12 +4,18 @@
   --ulivo-s: #6b7c4f;
   --terracotta: #d97d54;
 }
+/* genericStyle.css oppure LoginForm.module.css */
 .sfondo {
-  background-color: #e8e0d0;
+  background-image: url("/sfondo.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  filter: brightness(1); /* ← 1 = normale, > 1 = più chiaro */
 }
-#main {
+
+/* #main {
   padding:;
-}
+} */
 
 .blu-mare {
   background-color: #0a6e8c;
