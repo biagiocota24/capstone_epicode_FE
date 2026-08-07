@@ -1,5 +1,6 @@
 // USERS & REGISTER & LOGIN
 export interface Visitor {
+  id?: number;
   name: string;
   surname: string;
   email: string;
@@ -11,6 +12,7 @@ export interface Visitor {
 }
 
 export interface BusinessOwner {
+  id?: number;
   name: string;
   surname: string;
   email: string;
@@ -18,9 +20,11 @@ export interface BusinessOwner {
   password: string;
   biografy: string;
   avatar: string;
+  nazionalita?: string;
 }
 
 export interface Admin {
+  id?: number;
   name: string;
   surname: string;
   email: string;
@@ -29,6 +33,7 @@ export interface Admin {
   biografy: string;
   avatar: string;
   dataAssunzione: Date;
+  nazionalita?: string;
 }
 
 export interface CredenzialiLogin {
@@ -40,7 +45,7 @@ export interface LoginResponse {
   token: string;
   type: string;
   role: string;
-  currentUser: Admin | BusinessOwner | Visitor;
+  user: Admin | BusinessOwner | Visitor;
 }
 
 export interface FileUploadProps {

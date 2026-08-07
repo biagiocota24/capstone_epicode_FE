@@ -4,7 +4,6 @@
         "registrati": "Sign in",
         "accedi": "Login"
     },
-<<<<<<< Updated upstream
     "login": {
         "brand": "GarganoExplorer",
         "heroTitle": "Discover the Gargano, one wave at a time.",
@@ -38,9 +37,7 @@
         "signUp": "Sign up",
         "toastError": "Please fix the highlighted fields",
         "toastSuccess": "Signed in! Welcome to GarganoExplorer."
-    }
-}
-=======
+    },
     "Inserisci i tuoi dati": "Enter your details",
     "Inserisci il tuo nome": "Enter your name",
     "Inserisci il tuo cognome": "Enter your surname",
@@ -60,6 +57,10 @@
     "Oops! Qualcosa è andato storto": "Oops! Something went wrong",
     "Registrazione Completata!": "Registration Complete!",
     "Benvenuto! Verrai reindirizzato al login...": "Welcome! You will be redirected to login...",
-    "Continua": "Continue"
+    "Continua": "Continue",
+    "Successo": "Success",
+    "Login avvenuto con successo": "Login successful",
+    "Email o password non corretti": "Incorrect email or password",
+    "Accesso in corso...": "Signing in...",
+    "accedi": "Sign in"
 }
->>>>>>> Stashed changes

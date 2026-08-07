@@ -42,3 +42,30 @@ main {
   margin-top: var(--navbar-height, 0px);
   /* fallback se la variabile non è settata */
 }
+
+ /* BOTTONE BLUE PER FORMS */
+.role-button {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #edfdfd;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.role-button-active {
+  background: linear-gradient(
+    135deg,
+    var(--lp-primary),
+    var(--lp-primary-light)
+  );
+  color: white;
+}

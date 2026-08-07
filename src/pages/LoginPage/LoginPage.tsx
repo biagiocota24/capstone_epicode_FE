@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   FaCompass,
@@ -15,6 +15,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import "./LoginPage.css";
+import { useAuthStore } from "../../zustand/authStore";
 
 type Role = "visitor" | "business" | "admin";
 type Toast = { type: "error" | "success"; message: string } | null;
@@ -25,10 +26,13 @@ const ROLES: { key: Role; icon: React.ReactNode }[] = [
   { key: "admin", icon: <FaCog /> },
 ];
 
-const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+const isValidEmail = (value: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 const LoginPage = function () {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { login } = useAuthStore();
 
   const [role, setRole] = useState<Role>("visitor");
   const [email, setEmail] = useState("");
@@ -59,7 +63,7 @@ const LoginPage = function () {
     setTimeout(() => setToast(null), 3200);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setEmailTouched(true);
     setPasswordTouched(true);
@@ -73,10 +77,20 @@ const LoginPage = function () {
 
     setLoading(true);
     setToast(null);
-    setTimeout(() => {
-      setLoading(false);
+
+    const success = await login({ email, password });
+
+    setLoading(false);
+    if (success) {
       showToast({ type: "success", message: t("login.toastSuccess") });
-    }, 1400);
+      setTimeout(() => {
+        if (role === "visitor") navigate("/visitor/home");
+        if (role === "business") navigate("/businessowner/home");
+        if (role === "admin") navigate("/admin/home");
+      }, 1400);
+    } else {
+      showToast({ type: "error", message: t("login.toastError") });
+    }
   };
 
   return (
@@ -142,7 +156,9 @@ const LoginPage = function () {
             <div className="login-fields">
               <div className="login-field">
                 <label htmlFor="login-email">{t("login.email")}</label>
-                <div className={`login-field-wrap${emailError ? " error" : ""}`}>
+                <div
+                  className={`login-field-wrap${emailError ? " error" : ""}`}
+                >
                   <input
                     id="login-email"
                     type="email"
@@ -155,7 +171,9 @@ const LoginPage = function () {
                     <FaEnvelope />
                   </span>
                 </div>
-                {emailError && <div className="login-field-error">{emailError}</div>}
+                {emailError && (
+                  <div className="login-field-error">{emailError}</div>
+                )}
               </div>
 
               <div className="login-field">
@@ -163,7 +181,9 @@ const LoginPage = function () {
                   <label htmlFor="login-password">{t("login.password")}</label>
                   <a href="#">{t("login.forgotPassword")}</a>
                 </div>
-                <div className={`login-field-wrap${passwordError ? " error" : ""}`}>
+                <div
+                  className={`login-field-wrap${passwordError ? " error" : ""}`}
+                >
                   <input
                     id="login-password"
                     type={showPassword ? "text" : "password"}
@@ -223,14 +243,21 @@ const LoginPage = function () {
           </div>
 
           <div className="login-signup">
-            {t("login.noAccount")} <Link to="/register">{t("login.signUp")}</Link>
+            {t("login.noAccount")}{" "}
+            <Link to="/register">{t("login.signUp")}</Link>
           </div>
         </div>
       </div>
 
       {toast && (
         <div className={`login-toast login-toast-${toast.type}`}>
-          <span>{toast.type === "error" ? <FaExclamationTriangle /> : <FaCheckCircle />}</span>
+          <span>
+            {toast.type === "error" ? (
+              <FaExclamationTriangle />
+            ) : (
+              <FaCheckCircle />
+            )}
+          </span>
           <span>{toast.message}</span>
         </div>
       )}

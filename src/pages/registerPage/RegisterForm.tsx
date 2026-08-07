@@ -1,132 +1,28 @@
-<<<<<<< HEAD
-import { Form } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import "./registerForm.css";
-import { FaCompass, FaEnvelope } from "react-icons/fa";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FiMail } from "react-icons/fi";
-
-const RegisterForm = function () {
-  const { t } = useTranslation();
-  const [selectedRole, setSelectedRole] = useState("turista");
-
-  const roles = [
-    { id: "turista", label: "Turista", icon: "🧳" },
-    { id: "Imprenditore", label: "Imprenditore", icon: "📍" },
-  ];
-  return (
-    <div className="register-page d-flex row">
-      <div className="blob blob-1"></div>
-      <div className="blob blob-2"></div>
-
-      <div className="hero p-5 col-5 d-none d-md-flex">
-        <div className="d-flex align-items-center">
-          <div className="compass-icon">
-            <FaCompass />
-          </div>
-          <div className="text-white fw-bold fs-3">Gargano Explorer</div>
-        </div>
-        <div className="hero-header">
-          <h1 className="fw-bold">Scopri il Gargano, un'onda alla volta.</h1>
-          <p>
-            Accedi per salvare i tuoi luoghi preferiti, pianificare itinerari e
-            scoprire attrazioni curate da chi vive il territorio.
-          </p>
-        </div>
-        <div className="d-flex gap-4">
-          <span>
-            <div className="fw-bold fs-4">180+</div>
-            <div className="small">attrazioni</div>
-          </span>
-          <span>
-            <div className="fw-bold fs-4">40</div>
-            <div>comuni</div>
-          </span>
-          <span>
-            <div className="fw-bold fs-4">4.0★</div>
-            <div>recensioni utenti</div>
-          </span>
-        </div>
-      </div>
-      <div className="col-7 page-content">
-        <div className="form-wrapper">
-          <h2 className="fw-bold">Bentornato</h2>
-          <p className="text-secondary small">Registrati alla piattaforma</p>
-          <div className="role-wrapper">
-            {roles.map((role) => {
-              return (
-                <button
-                  onClick={() => {
-                    setSelectedRole(role.id);
-                  }}
-                  className={
-                    selectedRole === role.id
-                      ? "role-button role-button-active"
-                      : "role-button"
-                  }
-                >
-                  {role.icon} {role.label}
-                </button>
-              );
-            })}
-          </div>
-          <Form className="mt-4">
-            <Form.Group className="mb-3">
-              <Form.Label className="fw-bold small">Email</Form.Label>
-              <div style={{ position: "relative" }}>
-                <FiMail
-                  style={{
-                    position: "absolute",
-                    left: "12px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    color: "#1a7a96",
-                    pointerEvents: "none",
-                  }}
-                />
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder={t("login.emailPlaceholder")}
-                  style={{ paddingLeft: "40px" }}
-                />
-                {/* {errors.email && (
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email}
-                  </Form.Control.Feedback>
-                )} */}
-              </div>
-            </Form.Group>
-          </Form>
-        </div>
-      </div>
-    </div>
-=======
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Modal,
-  Row,
-  Spinner,
-} from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import { FiMail, FiLock, FiPhone, FiUser, FiCheckCircle } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { FiCheckCircle } from "react-icons/fi";
+import { Modal, Button } from "react-bootstrap";
 import UploadFile from "../../components/componentiGenerali/UploadFile";
-import FormInput from "../../components/componentiGenerali/FormInput";
 import ToastNotification from "../../components/componentiGenerali/ToastNotification";
 import { useEnumsStore } from "../../zustand/enumsStore";
 import type { Visitor } from "../../interfaces/intefaces";
+import Logo from "../../components/componentiGenerali/logo/logo";
+
+const roles = [
+  { id: "turista", label: "Turista", icon: "🧳" },
+  { id: "Imprenditore", label: "Imprenditore", icon: "📍" },
+];
 
 const RegisterForm = function () {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { fetchAllEnums, NazionalitaEnums } = useEnumsStore();
 
-  // CAMPI COMUNI
+  const [selectedRole, setSelectedRole] = useState("turista");
+
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -136,9 +32,7 @@ const RegisterForm = function () {
   const [biografy, setBiografy] = useState("");
   const [avatar, setAvatar] = useState("");
   const [preview, setPreview] = useState("");
-  // CAMPO SOLO VISITOR
   const [nazionalita, setNazionalita] = useState("");
-  // CAMPO SOLO BUSINESS OWNER
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -182,7 +76,7 @@ const RegisterForm = function () {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
     setIsLoading(true);
@@ -204,7 +98,7 @@ const RegisterForm = function () {
         avatar: t("Carica una foto di profilo"),
       }));
       showToast("info", t("Info"), t("Carica una foto di profilo"));
-      return; //
+      return;
     }
 
     const daRegistrare: Visitor = {
@@ -220,7 +114,6 @@ const RegisterForm = function () {
 
     try {
       const api_url = import.meta.env.VITE_API_URL;
-
       const response = await fetch(`${api_url}/auth/register/visitor`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -240,14 +133,13 @@ const RegisterForm = function () {
             data.message || t("Oops! Qualcosa è andato storto"),
           );
         }
-
         setIsLoading(false);
       } else {
         resetForm();
         setIsLoading(false);
         setShowSuccessModal(true);
       }
-    } catch (errore) {
+    } catch {
       showToast("error", t("Errore"), t("Oops! Qualcosa è andato storto"));
       setIsLoading(false);
     }
@@ -255,7 +147,7 @@ const RegisterForm = function () {
 
   useEffect(() => {
     fetchAllEnums();
-  }, []);
+  }, [fetchAllEnums]);
 
   return (
     <>
@@ -286,7 +178,7 @@ const RegisterForm = function () {
           <Button
             onClick={() => {
               setShowSuccessModal(false);
-              navigate("/login");
+              navigate("/");
             }}
             style={{
               backgroundColor: "var(--blu-mare)",
@@ -300,76 +192,239 @@ const RegisterForm = function () {
         </Modal.Footer>
       </Modal>
 
-      <Container fluid className="mt-5 mb-5">
-        <Row className="justify-content-center">
-          <Col lg={6}>
-            <h3 className="text-center mb-4">{t("Inserisci i tuoi dati")}</h3>
-            <Form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
-              <FormInput
-                type="text"
-                placeholder={t("Inserisci il tuo nome")}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                error={errors.name}
-                required
-              />
+      <div className="register-page row m-0">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
 
-              <FormInput
-                type="text"
-                placeholder={t("Inserisci il tuo cognome")}
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-                error={errors.surname}
-                required
-              />
+        <div className="hero p-5 col-5 d-none d-md-flex">
+          <Logo tema="light" />
+          <div className="hero-header">
+            <h1 className="fw-bold">Scopri il Gargano, un'onda alla volta.</h1>
+            <p>
+              Accedi per salvare i tuoi luoghi preferiti, pianificare itinerari
+              e scoprire attrazioni curate da chi vive il territorio.
+            </p>
+          </div>
+          <div className="d-flex gap-4">
+            <span>
+              <div className="fw-bold fs-4">180+</div>
+              <div className="small">attrazioni</div>
+            </span>
+            <span>
+              <div className="fw-bold fs-4">40</div>
+              <div>comuni</div>
+            </span>
+            <span>
+              <div className="fw-bold fs-4">4.0★</div>
+              <div>recensioni utenti</div>
+            </span>
+          </div>
+        </div>
 
-              <FormInput
-                type="email"
-                placeholder={t("Inserisci la tua email")}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                error={errors.email}
-                required
-              />
+        <div className="col-12 col-md-7 page-content">
+          <div className="form-wrapper">
+            <h2 className="fw-bold">Bentornato</h2>
+            <p className="text-secondary small">Registrati alla piattaforma</p>
 
-              <FormInput
-                type="password"
-                placeholder={t("Inserisci una password")}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                error={errors.password}
-                required
-              />
+            <div className="role-wrapper">
+              {roles.map((role) => (
+                <button
+                  key={role.id}
+                  type="button"
+                  onClick={() => setSelectedRole(role.id)}
+                  className={
+                    selectedRole === role.id
+                      ? "role-button role-button-active"
+                      : "role-button"
+                  }
+                >
+                  {role.icon} {role.label}
+                </button>
+              ))}
+            </div>
 
-              <FormInput
-                type="password"
-                placeholder={t("Ripeti password")}
-                value={passwordConfermata}
-                onChange={(e) => setPasswordConfermata(e.target.value)}
-                error={errors.passwordConfermata}
-                required
-              />
+            <Form
+              className="mt-4 d-flex flex-column gap-3"
+              onSubmit={handleSubmit}
+            >
+              <div className="d-flex gap-2">
+                <Form.Group className="flex-fill">
+                  <div style={{ position: "relative" }}>
+                    <FiUser
+                      style={{
+                        position: "absolute",
+                        left: "12px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "#1a7a96",
+                        pointerEvents: "none",
+                      }}
+                    />
+                    <Form.Control
+                      type="text"
+                      placeholder={t("Inserisci il tuo nome")}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      isInvalid={!!errors.name}
+                      required
+                      style={{ paddingLeft: "40px" }}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.name}
+                    </Form.Control.Feedback>
+                  </div>
+                </Form.Group>
+                <Form.Group className="flex-fill">
+                  <div style={{ position: "relative" }}>
+                    <FiUser
+                      style={{
+                        position: "absolute",
+                        left: "12px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "#1a7a96",
+                        pointerEvents: "none",
+                      }}
+                    />
+                    <Form.Control
+                      type="text"
+                      placeholder={t("Inserisci il tuo cognome")}
+                      value={surname}
+                      onChange={(e) => setSurname(e.target.value)}
+                      isInvalid={!!errors.surname}
+                      required
+                      style={{ paddingLeft: "40px" }}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.surname}
+                    </Form.Control.Feedback>
+                  </div>
+                </Form.Group>
+              </div>
 
-              <FormInput
-                type="tel"
-                placeholder={t("Inserisci il numero di telefono")}
-                value={telephone}
-                onChange={(e) => setTelephone(e.target.value)}
-                error={errors.telephone}
-                pattern="[0-9\s\-\+\(\)]+"
-                required
-              />
+              <Form.Group>
+                <div style={{ position: "relative" }}>
+                  <FiMail
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#1a7a96",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <Form.Control
+                    type="email"
+                    placeholder={t("login.emailPlaceholder")}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    isInvalid={!!errors.email}
+                    required
+                    style={{ paddingLeft: "40px" }}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
+                </div>
+              </Form.Group>
 
-              <FormInput
-                type="text"
-                as="textarea"
-                placeholder={t("Inserisci una tua breve biografia")}
-                value={biografy}
-                onChange={(e) => setBiografy(e.target.value)}
-                error={errors.biografy}
-                rows={3}
-                required
-              />
+              <Form.Group>
+                <div style={{ position: "relative" }}>
+                  <FiPhone
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#1a7a96",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <Form.Control
+                    type="tel"
+                    placeholder={t("Inserisci il numero di telefono")}
+                    value={telephone}
+                    onChange={(e) => setTelephone(e.target.value)}
+                    isInvalid={!!errors.telephone}
+                    pattern="[0-9\s\-\+\(\)]+"
+                    required
+                    style={{ paddingLeft: "40px" }}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.telephone}
+                  </Form.Control.Feedback>
+                </div>
+              </Form.Group>
+
+              <Form.Group>
+                <div style={{ position: "relative" }}>
+                  <FiLock
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#1a7a96",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <Form.Control
+                    type="password"
+                    placeholder={t("Inserisci una password")}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    isInvalid={!!errors.password}
+                    required
+                    style={{ paddingLeft: "40px" }}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </div>
+              </Form.Group>
+
+              <Form.Group>
+                <div style={{ position: "relative" }}>
+                  <FiLock
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#1a7a96",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <Form.Control
+                    type="password"
+                    placeholder={t("Ripeti password")}
+                    value={passwordConfermata}
+                    onChange={(e) => setPasswordConfermata(e.target.value)}
+                    isInvalid={!!errors.passwordConfermata}
+                    required
+                    style={{ paddingLeft: "40px" }}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.passwordConfermata}
+                  </Form.Control.Feedback>
+                </div>
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Control
+                  as="textarea"
+                  placeholder={t("Inserisci una tua breve biografia")}
+                  value={biografy}
+                  onChange={(e) => setBiografy(e.target.value)}
+                  isInvalid={!!errors.biografy}
+                  rows={3}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.biografy}
+                </Form.Control.Feedback>
+              </Form.Group>
 
               <Form.Group>
                 <Form.Control
@@ -414,15 +469,10 @@ const RegisterForm = function () {
                 )}
               </Form.Group>
 
-              <Button
+              <button
                 type="submit"
                 disabled={isLoading}
-                className="mt-3"
-                style={{
-                  backgroundColor: "var(--blu-mare)",
-                  border: "none",
-                  borderRadius: "0.5rem",
-                }}
+                className="role-button role-button-active mt-2 w-100 py-2"
               >
                 {isLoading ? (
                   <>
@@ -438,13 +488,12 @@ const RegisterForm = function () {
                 ) : (
                   t("Registrati")
                 )}
-              </Button>
+              </button>
             </Form>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     </>
->>>>>>> main
   );
 };
 
